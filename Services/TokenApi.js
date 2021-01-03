@@ -3,29 +3,35 @@ const apiConfig = require('./ApiConfig');
 
 const BASE_URL = "https://sandbox-api.payosy.com/api/";
 
+function randomAmountSelect() {
+    const amountList = [50.0, 63.78, 20, 80.2, 65.23, 71, 30, 35.5];
+    const random = Math.floor(Math.random() * amountList.length);
+
+    return amountList[random];
+}
+
+const header = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'x-ibm-client-id': apiConfig.clientId,
+    'x-ibm-client-secret': apiConfig.clientSecret
+}
+
 class TokenApi {
 
-    static getQrCode(amount) {
+    static getQrCode() {
+
         return request.post(BASE_URL + 'get_qr_sale')
-            .set({
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'x-ibm-client-id': apiConfig.clientId,
-                'x-ibm-client-secret': apiConfig.clientSecret
-            })
+            .set(header)
             .send({
-                "totalReceiptAmount": amount
+                "totalReceiptAmount": randomAmountSelect()
             });
     }
 
     static makePayment(qrData, amount) {
+
         return request.post(BASE_URL + 'payment')
-            .set({
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'x-ibm-client-id': apiConfig.clientId,
-                'x-ibm-client-secret': apiConfig.clientSecret
-            })
+            .set(header)
             .send({
                 "returnCode": 1000,
                 "returnDesc": "success",

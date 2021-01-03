@@ -12,6 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+//Routes
 router.routes(app);
 
 const port = process.env.PORT || 3600;

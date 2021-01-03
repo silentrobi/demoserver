@@ -1,12 +1,12 @@
-const QRCodePaymentController = require('../controllers/QRCodePaymentController');
+const ServerController = require('../controllers/ServerController');
 
 exports.routes = function (app) {
 
     app.post('/api/server/get-qrcode', [
-        QRCodePaymentController.sendQrCode
+        ServerController.sendQrCode
     ]);
 
     app.post('/api/server/payment', [
-        QRCodePaymentController.makePayment
+        ServerController.makePayment
     ]);
 };
