@@ -15,7 +15,7 @@ const header = {
     'Accept': 'application/json',
     'x-ibm-client-id': apiConfig.clientId,
     'x-ibm-client-secret': apiConfig.clientSecret
-}
+};
 
 class TokenApi {
 
